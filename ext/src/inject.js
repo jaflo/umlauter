@@ -27,7 +27,6 @@
 		else word = text.slice(left, right + pos);
 		if (word.replace(/\W+/, "") == "" && this.dataset.lastTextLength != text.length) {
 			if (this.dataset.lastWord && this.dataset.lastWord.replace(/\W/g, "")) {
-				if (!word) this.dataset.lastWord = this.dataset.lastWord.slice(0, -1);
 				chrome.runtime.sendMessage({
 					word: this.dataset.lastWord,
 					contentEditable: contentEditable
@@ -49,10 +48,7 @@
 						sel.removeAllRanges();
 						sel.addRange(selectedRange);
 					} else {
-						// var left = text.slice(0, pos-1).search(/\w+$/);
-						// var right = text.slice(pos).search(/\W/);
-						console.log([res.word, replacement]);
-						console.log([text.slice(0, pos), text.slice(pos)]);
+						if (!word) this.dataset.lastWord = this.dataset.lastWord.slice(0, -1);
 						var start = this.selectionStart,
 							end = this.selectionEnd;
 						this.value = text.slice(0, pos-1).replace(new RegExp(res.word+"(\\w?\\W*$)"), replacement+"$1") + text.slice(pos-1);

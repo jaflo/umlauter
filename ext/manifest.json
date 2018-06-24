@@ -1,6 +1,6 @@
 {
 	"name": "Umlauter",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"manifest_version": 2,
 	"description": "Corrects common German transcriptions like ue to the proper Umlaut ü.",
 	"homepage_url": "https://github.com/jaflo/umlauter",
