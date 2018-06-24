@@ -2,7 +2,9 @@
 
 # Umlauter
 
-Corrects common German transcriptions like frueher to use the proper Umlaut ü (früher).
+Corrects common German transcriptions like frueher to use the proper Umlaut ü (früher). Available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/umlauter/) and coming soon for Chrome.
+
+Installation requires access to websites to correct typing in input boxes. All data is processed locally and is not sent to remote servers!
 
 ## Why?
 
@@ -30,6 +32,6 @@ A Chrome/Firefox extension reads this JSON file and uses it to predict the need 
 
 ## Disclaimer
 
-This is still in beta. There are some kinks with the text replacement on the browser-side. Please create an issue if you spot any problems.
+This is still in beta. There are some kinks with the text replacement on the browser-side. Please [create an issue](https://github.com/jaflo/umlauter/issues/new) if you spot any problems.
 
 <small>* fun fact: using buzzwords makes your project sound 200% more impressive</small>
