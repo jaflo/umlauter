@@ -2,7 +2,7 @@
 
 # Umlauter
 
-Corrects common German transcriptions like frueher to use the proper Umlaut ü (früher). Available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/umlauter/) and coming soon for Chrome.
+Corrects common German transcriptions like frueher to use the proper Umlaut ü (früher). Available on [Firefox](https://addons.mozilla.org/en-US/firefox/addon/umlauter/) and [Chrome](https://chrome.google.com/webstore/detail/umlauter/cpehjdejapmgcjcpcgambppnekfnjiaj).
 
 Installation requires access to websites to correct typing in input boxes. All data is processed locally and is not sent to remote servers!
 
