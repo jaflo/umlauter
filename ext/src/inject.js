@@ -41,7 +41,7 @@
 						sel.modify("extend", "forward", "word");
 						var range = sel.getRangeAt(0);
 						range.deleteContents();
-						var insert = document.createTextNode(replacement);
+						var insert = document.createTextNode(replacement+word);
 						range.insertNode(insert);
 						selectedRange.setStartAfter(insert);
 						selectedRange.collapse(false);

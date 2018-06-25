@@ -1,4 +1,7 @@
-deu_mixed-typical_*
 .ipynb_checkpoints
-ext/src/dump.json
 .DS_Store
+
+deu_mixed-typical_*
+
+ext/src/dump.json
+ext/ext.zip
