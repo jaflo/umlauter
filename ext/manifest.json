@@ -1,8 +1,9 @@
 {
-	"name": "Umlauter",
-	"version": "0.0.5",
+	"name": "__MSG_appName__",
+	"version": "0.0.6",
 	"manifest_version": 2,
-	"description": "Corrects common German transcriptions like ue to the proper Umlaut ü.",
+	"description": "__MSG_appDesc__",
+	"default_locale": "en",
 	"homepage_url": "https://github.com/jaflo/umlauter",
 	"icons": {
 		"16": "icons/icon16.png",

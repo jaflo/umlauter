@@ -1,0 +1,8 @@
+{
+	"appName": {
+		"message": "Umlauter: automatisch Umlaute einfügen"
+	},
+	"appDesc": {
+		"message": "Korrigiert gängige deutsche Transkriptionen wie ue zum richtigen Umlaut ü."
+	}
+}

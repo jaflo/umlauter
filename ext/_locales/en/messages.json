@@ -1,0 +1,10 @@
+{
+	"appName": {
+		"message": "Umlauter: automatically add Umlauts",
+		"description": "The title of the application, displayed in the web store."
+	},
+	"appDesc": {
+		"message": "Corrects common German transcriptions like ue to the proper Umlaut ü.",
+		"description": "The description of the application, displayed in the web store."
+	}
+}
