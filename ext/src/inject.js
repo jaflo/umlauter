@@ -3,7 +3,10 @@
 	document.addEventListener("keyup", captureEvent);
 
 	function captureEvent(e) {
-		if (e.target && e.target.matches("input, textarea, [contenteditable]")) {
+		if (e.target &&
+			e.target.matches("input, textarea, [contenteditable]") &&
+			!e.target.classList.contains("CodeMirror-code") // too buggy
+		) {
 			check.bind(e.target)();
 		}
 	}
@@ -21,7 +24,7 @@
 			pos = range.toString().length;
 		}
 		var left = text.slice(0, pos).search(/\w+$/),
-			right = text.slice(pos).search(/\W/),
+			right = 0,
 			word;
 		if (right < 0) word = text.slice(left);
 		else word = text.slice(left, right + pos);
@@ -53,7 +56,6 @@
 							end = this.selectionEnd;
 						this.value = text.slice(0, pos-1).replace(new RegExp(res.word+"(\\w?\\W*$)"), replacement+"$1") + text.slice(pos-1);
 						var diff = replacement.length - res.word.length;
-						console.log(diff);
 						this.selectionStart = start+diff;
 						this.selectionEnd = end+diff;
 					}
