@@ -98,7 +98,7 @@ function updateIcon() {
 		chrome.browserAction.setBadgeText({ text: "" });
 		chrome.browserAction.setTitle({ title: "Umlauter" });
 	} else {
-		chrome.browserAction.setBadgeText({ text: "×" });
+		chrome.browserAction.setBadgeText({ text: "aus" });
 		chrome.browserAction.setBadgeBackgroundColor({ color: "red" });
 		chrome.browserAction.setTitle({ title: "Umlauter aus" });
 	}
@@ -121,3 +121,13 @@ chrome.browserAction.onClicked.addListener(function() {
 		chrome.storage.sync.set({ "enabled": enabled }, updateIcon);
 	});
 })
+
+chrome.runtime.onInstalled.addListener(function(e) {
+	if (chrome.runtime.OnInstalledReason.INSTALL == e.reason) {
+		var region = "";
+		if (chrome.i18n.getMessage("@@ui_locale").indexOf("de") > -1) region = "_de";
+		chrome.tabs.create({
+			url: chrome.extension.getURL("/src/install/index"+region+".html")
+		});
+	}
+});

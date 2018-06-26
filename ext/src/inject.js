@@ -1,6 +1,6 @@
 (function() {
-	document.addEventListener("keypress", captureEvent);
-	document.addEventListener("keyup", captureEvent);
+	window.addEventListener("keypress", captureEvent, true);
+	window.addEventListener("keyup", captureEvent, true);
 
 	function captureEvent(e) {
 		if (e.target &&
@@ -39,22 +39,25 @@
 					if (res.contentEditable) {
 						var sel = document.getSelection();
 						var selectedRange = sel.getRangeAt(0);
-						sel.collapseToStart();
-						sel.modify("move", "backward", "word");
-						sel.modify("extend", "forward", "word");
-						var range = sel.getRangeAt(0);
+						var range = document.createRange();
+						range.selectNodeContents(this);
+						range.setStart(selectedRange.startContainer, 0);
+						range.setEnd(selectedRange.startContainer, selectedRange.startOffset);
+						var el = document.createElement("span");
+						el.appendChild(range.cloneContents());
+						var text = el.innerText;
 						range.deleteContents();
-						var insert = document.createTextNode(replacement+word);
+						var insert = document.createTextNode(text.slice(0, pos-1).replace(new RegExp(res.word+"(\\w?\\W*$)"), replacement+"$1") + text.slice(pos-1));
 						range.insertNode(insert);
-						selectedRange.setStartAfter(insert);
-						selectedRange.collapse(false);
+						range.setStartAfter(insert);
+						range.setEndAfter(insert);
+						range.collapse(false);
 						sel.removeAllRanges();
-						sel.addRange(selectedRange);
+						sel.addRange(range);
 					} else {
-						if (!word) this.dataset.lastWord = this.dataset.lastWord.slice(0, -1);
 						var start = this.selectionStart,
 							end = this.selectionEnd;
-						this.value = text.slice(0, pos-1).replace(new RegExp(res.word+"(\\w?\\W*$)"), replacement+"$1") + text.slice(pos-1);
+						this.value = this.value.slice(0, pos-1).replace(new RegExp(res.word+"(\\w?\\W*$)"), replacement+"$1") + this.value.slice(pos-1);
 						var diff = replacement.length - res.word.length;
 						this.selectionStart = start+diff;
 						this.selectionEnd = end+diff;
