@@ -35,30 +35,17 @@
 					contentEditable: contentEditable
 				}, function(res) {
 					if (!res) return; // disabled
-					var replacement = res.replacement;
 					if (res.contentEditable) {
 						var sel = document.getSelection();
-						var selectedRange = sel.getRangeAt(0);
-						var range = document.createRange();
-						range.selectNodeContents(this);
-						range.setStart(selectedRange.startContainer, 0);
-						range.setEnd(selectedRange.startContainer, selectedRange.startOffset);
+						sel.modify("extend", "backward", "word");
 						var el = document.createElement("span");
-						el.appendChild(range.cloneContents());
-						var text = el.innerText;
-						range.deleteContents();
-						var insert = document.createTextNode(text.slice(0, pos-1).replace(new RegExp(res.word+"(\\w?\\W*$)"), replacement+"$1") + text.slice(pos-1));
-						range.insertNode(insert);
-						range.setStartAfter(insert);
-						range.setEndAfter(insert);
-						range.collapse(false);
-						sel.removeAllRanges();
-						sel.addRange(range);
+						el.appendChild(sel.getRangeAt(0).cloneContents());
+						document.execCommand("insertText", false, el.innerText.replace(new RegExp(res.word+"(\\w?\\W*$)"), res.replacement+"$1"));
 					} else {
 						var start = this.selectionStart,
 							end = this.selectionEnd;
-						this.value = this.value.slice(0, pos-1).replace(new RegExp(res.word+"(\\w?\\W*$)"), replacement+"$1") + this.value.slice(pos-1);
-						var diff = replacement.length - res.word.length;
+						this.value = this.value.slice(0, pos-1).replace(new RegExp(res.word+"(\\w?\\W*$)"), res.replacement+"$1") + this.value.slice(pos-1);
+						var diff = res.replacement.length - res.word.length;
 						this.selectionStart = start+diff;
 						this.selectionEnd = end+diff;
 					}
