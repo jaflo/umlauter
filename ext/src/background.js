@@ -95,11 +95,24 @@ chrome.storage.sync.get(["enabled"], function(result) {
 
 function updateIcon() {
 	if (enabled) {
-		chrome.browserAction.setBadgeText({ text: "" });
+		chrome.browserAction.setIcon({
+			path : {
+				"16": "icons/icon16.png",
+				"48": "icons/icon48.png",
+				"32": "icons/icon32.png",
+				"128": "icons/icon128.png"
+			}
+		});
 		chrome.browserAction.setTitle({ title: "Umlauter" });
 	} else {
-		chrome.browserAction.setBadgeText({ text: "aus" });
-		chrome.browserAction.setBadgeBackgroundColor({ color: "red" });
+		chrome.browserAction.setIcon({
+			path : {
+				"16": "icons/disabled/icon16.png",
+				"48": "icons/disabled/icon48.png",
+				"32": "icons/disabled/icon32.png",
+				"128": "icons/disabled/icon128.png"
+			}
+		});
 		chrome.browserAction.setTitle({ title: "Umlauter aus" });
 	}
 }

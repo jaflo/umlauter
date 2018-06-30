@@ -34,7 +34,7 @@
 					word: this.dataset.lastWord,
 					contentEditable: contentEditable
 				}, function(res) {
-					if (!res) return; // disabled
+					if (!res || res.word == res.replacement) return; // disabled or no replacement
 					if (res.contentEditable) {
 						var sel = document.getSelection();
 						sel.modify("extend", "backward", "word");
