@@ -55,6 +55,8 @@ function suggest(word) {
 				target = unreplace[orig];
 				prob_b = explore(probs_before, string.substring(pos-lookaround-1, pos), orig, target);
 				prob_a = explore(probs_after, string.substring(pos+2, pos+lookaround+2).split("").reverse().join(""), orig, target);
+				orig = word.substring(pos, pos+2);
+				if (orig[0] == orig[0].toUpperCase()) target = target.toUpperCase();
 				prob = Math.max(prob_a, prob_b);
 				if (prob > 0.02) {
 					word = word.substring(0, pos)+target+word.substring(pos+2, word.length);
